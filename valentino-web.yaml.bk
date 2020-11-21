@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: valentino-webserver
+  labels:
+    app: valentino-webserver
+spec:
+  containers:
+    - name: webserver
+      image: valentinod/node-webserver:latest
+	  env:
+   	  - name: POD_NAME_ENV
+        value: "Valentino's pod"
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: valentino-webserver-service
+spec:
+  selector:
+    app: valentino-webserver 
+  ports:
+    - port: 8080 
